@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { SKILLTREE } from './data/skill-tree';
+import { ESkill } from './components/skill/ESkill';
+import { EProject } from './components/project/EProject';
+import { DSkillDetailed } from './components/skill/DSkillDetailed';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        Object.keys(SKILLTREE.skills).map((skill) => <ESkill
+          type={"custom"}
+          component={DSkillDetailed}
+          styles={{
+            container: {},
+            text: {},
+            list: {}
+          }}
+          skillName={skill}
+        />)
+      }
+      {
+        Object.keys(SKILLTREE.projects).map((project) => <EProject
+          type={"simple"}
+          projectName={project}
+        />)
+      }
     </div>
   );
 }
